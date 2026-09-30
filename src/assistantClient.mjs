@@ -1,13 +1,38 @@
-const DEMO_RESPONSE_TEXT =
-  'Я прочитала твоё сообщение. Это демонстрационная версия: настоящий AI-проводник пока не подключён.';
+export async function sendMessageToAI({ guideId, message, history = [] }) {
+  // Считываем ключ API из секретов окружения
+  const apiKey = process.env.AI_API_KEY; 
 
-export const demoAssistantClient = {
-  async sendMessage() {
-    await new Promise((resolve) => window.setTimeout(resolve, 900));
+  if (!apiKey) {
+    console.error("API key не найден в переменных окружения.");
+    return "Ошибка: API ключ не подключён.";
+  }
 
-    return {
-      text: DEMO_RESPONSE_TEXT,
-      source: 'demo',
-    };
-  },
-};
+  // Системный промпт для Элиры
+  const systemPrompt = `Ты — Элира, бережный и поддерживающий проводник. 
+Помогаешь человеку, когда он устал или потерял контакт с собой. 
+Отвечай мягко, коротко и с заботой.`;
+
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${apiKey}`
+      },
+      body: JSON.stringify({
+        model: "gpt-4o-mini",
+        messages: [
+          { role: "system", content: systemPrompt },
+          ...history,
+          { role: "user", content: message }
+        ]
+      })
+    });
+
+    const data = await response.json();
+    return data.choices[0].message.content;
+  } catch (error) {
+    console.error("Ошибка при запросе к AI:", error);
+    return "Не удалось связаться с проводником. Попробуйте ещё раз чуть позже.";
+  }
+}

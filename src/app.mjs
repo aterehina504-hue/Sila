@@ -189,13 +189,7 @@ function renderChat() {
           <p class="chat-header__name">${guide.name}</p>
           <p class="chat-header__status"><span></span> твой проводник</p>
         </div>
-        <span class="chat-header__demo">демо-режим</span>
-      </header>
-
-      <div class="chat-context">
-        <span class="chat-context__mark" aria-hidden="true"></span>
-        Настоящий AI пока не подключён. Переписка хранится только в этом браузере.
-      </div>
+        <span class="chat-header__demo">
 
       ${renderChatMessages()}
 
