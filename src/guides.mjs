@@ -2,7 +2,7 @@ export const GUIDES = [
   {
     id: 'leya',
     name: 'Лея',
-    description: 'Когда больно, страшно или не хватает внутренней опоры',
+    description: 'Тепло и диалог, когда хочется выговориться и быть услышанной',
     initials: 'Л',
     color: 'rose',
     inviteName: 'Лею',
@@ -11,7 +11,7 @@ export const GUIDES = [
   {
     id: 'elira',
     name: 'Элира',
-    description: 'Когда потерялся контакт с собой и всё идёт на автопилоте',
+    description: 'Пошаговые практики для поиска своего пути и реализации',
     initials: 'Э',
     color: 'sage',
     inviteName: 'Элиру',
@@ -29,7 +29,7 @@ export const GUIDES = [
   {
     id: 'nera',
     name: 'Нера',
-    description: 'Когда хочется посмотреть на ситуацию честно и глубже',
+    description: 'Практики проявления и бережной работы со страхами и внутренними блоками',
     initials: 'Н',
     color: 'blue',
     inviteName: 'Неру',
